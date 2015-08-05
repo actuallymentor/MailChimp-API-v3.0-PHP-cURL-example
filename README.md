@@ -6,20 +6,26 @@ My collegue wanted a file he could post data to, this file would then execute Ma
 
 ## Usage
 
-The php file takes POSTed arguments. There are 4 functions in this file:
+The php file takes POSTed arguments. There are 5 functions in this file:
 
 - Adding a subscriber 'mc_subscribe();'
 - Changing a subscriber fname merge tag 'mc_changename();'
 - Adding someone to an interest group 'mc_addinterest();'
 - Removing a subscriber from an interest group 'mc_reminterest();'
+- Checking if a subscriber exists (returns 'subscribed' or '404')
+
+Check the file to see what arguments are needed for these separate functions.
+
+### Post tester
+
+The post tester file can be used to test queries from your broswer. It's a form to post to the actor php.
 
 ## Variables you need to set
 
 At the top of the file you need to set:
 
 - Your API key from MailChimp
-- The list ID of the list you with to edit (note, this is not the ID from the url you see when logged in through a browser!)
-- Your MailChimp server prefix (e.g. us1)
+- Your MailChimp server prefix (e.g. us1.)
 
 ## Debug and testing
 
