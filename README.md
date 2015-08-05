@@ -24,3 +24,7 @@ At the top of the file you need to set:
 ## Debug and testing
 
 If you set the posted $_POST["debug"] to true the MailChimp API response if outputted into the screen.
+
+## License
+
+Use this as you will. Tweet me as thanks at @ActuallyMentor.
