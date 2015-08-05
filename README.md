@@ -27,4 +27,4 @@ If you set the posted $_POST["debug"] to true the MailChimp API response if outp
 
 ## License
 
-Use this as you will. Tweet me as thanks at @ActuallyMentor.
+Use this as you will. Tweet me as thanks at <a href="https://www.twitter.com/actuallymentor">@ActuallyMentor</a>.
