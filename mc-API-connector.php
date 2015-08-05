@@ -5,14 +5,12 @@ $email = $_POST["email"];
 $fname = $_POST["fname"];
 $interest = $_POST["interest"];
 $debug = isset($_POST["debug"])?$_POST["debug"]:0;
-$apikey = YOUR API KEY GOES HERE;
-$listid = YOUR LIST ID GOES HERE; This is not the one in the URL, see http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id
-$server = MAILCHIMP SERVER PREFIX; Example: us1, us3 etc. Log into mailchimp and look at the URL
+$apikey = YOURAPIKEY;
+$listid = $_POST["listid"];
+$server = YOURSERVER WITH A . AFTER IT;
 
 if ($debug) {
 	echo "*Robot voice* : Bleep bleep. Debugging is on master. <br><br>";
-} elseif (!$debug) {
-	echo "*Robot voice* : Blip blip, Debugging is off master. <br> <br>";
 }
 
 if (!isset($email)) {
@@ -21,30 +19,50 @@ if (!isset($email)) {
 
 switch($action) {
 	case "subscribe":
-	echo "*Robot voice* : Starting subscribe <br><br>";
-	mc_subscribe($email, $fname, $debug, $apikey, $listid);
-	echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	if ($debug) {
+		echo "*Robot voice* : Starting subscribe <br><br>";
+	}
+	mc_subscribe($email, $fname, $debug, $apikey, $listid, $server);
+	if ($debug) {
+		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	}
 	break;
 	case "addinterest":
-	echo "*Robot voice* : Starting interest add <br><br>";
-	mc_addinterest($email, $interest, $debug, $apikey, $listid);
-	echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	if ($debug) {
+		echo "*Robot voice* : Starting interest add <br><br>";
+	}
+	mc_addinterest($email, $interest, $debug, $apikey, $listid, $server);
+	if ($debug) {
+		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	}
 	break;
 	case "reminterest":
-	echo "*Robot voice* : Starting interest removal <br><br>";
-	mc_reminterest($email, $interest, $debug, $apikey, $listid);
-	echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	if ($debug) {
+		echo "*Robot voice* : Starting interest removal <br><br>";
+	}
+	mc_reminterest($email, $interest, $debug, $apikey, $listid, $server);
+	if ($debug) {
+		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	}
 	break;
 	case "changename":
-	mc_changename($fname, $email, $debug, $apikey, $listid);
-	echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	mc_changename($fname, $email, $debug, $apikey, $listid, $server);
+	if ($debug) {
+		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	}
+	break;
+	case "checklist":
+	mc_checklist($email, $debug, $apikey, $listid, $server);
+	if ($debug) {
+		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+	}
 	break;
 	default:
 	echo "*JRobot voice* : Your action is not valid master.<br><br>";
 	break;
 }
 
-function mc_subscribe($email, $fname, $debug, $apikey, $listid) {
+function mc_subscribe($email, $fname, $debug, $apikey, $listid, $server) {
 	$auth = base64_encode( 'user:'.$apikey );
 	$data = array(
 		'apikey'        => $apikey,
@@ -71,12 +89,13 @@ function mc_subscribe($email, $fname, $debug, $apikey, $listid) {
 
 	if ($debug) {
 		var_dump($result);
+		die('<br><br>*Creepy etheral voice* : Mailchimp executed subscribe');
 	}
 
-	die('<br><br>*Creepy etheral voice* : Mailchimp executed subscribe');
+	die();
 };
 
-function mc_changename($fname, $email, $debug, $apikey, $listid) {
+function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 	$userid = md5($email);
 	$auth = base64_encode( 'user:'. $apikey );
 	$data = array(
@@ -103,13 +122,14 @@ function mc_changename($fname, $email, $debug, $apikey, $listid) {
 
 	if ($debug) {
 		var_dump($result);
+		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
 	}
 
-	die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+	die();
 }
 
 
-function mc_addinterest($email, $interest, $debug, $apikey, $listid) {
+function mc_addinterest($email, $interest, $debug, $apikey, $listid, $server) {
 	$userid = md5($email);
 	$auth = base64_encode( 'user:'. $apikey );
 	$data = array(
@@ -137,12 +157,13 @@ function mc_addinterest($email, $interest, $debug, $apikey, $listid) {
 
 	if ($debug) {
 		var_dump($result);
+		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
 	}
 
-	die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+	die();
 }
 
-function mc_reminterest($email, $interest, $debug, $apikey, $listid) {
+function mc_reminterest($email, $interest, $debug, $apikey, $listid, $server) {
 	$userid = md5($email);
 	$auth = base64_encode( 'user:'. $apikey );
 
@@ -171,9 +192,45 @@ function mc_reminterest($email, $interest, $debug, $apikey, $listid) {
 
 	if ($debug) {
 		var_dump($result);
+		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest removal');
 	}
 
-	die('<br><br>*Creepy etheral voice* : Mailchimp executed interest removal');
+	die();
+}
+
+function mc_checklist($email, $debug, $apikey, $listid, $server) {
+	$userid = md5($email);
+	$auth = base64_encode( 'user:'. $apikey );
+
+	$data = array(
+		'apikey'        => $apikey,
+		'email_address' => $email
+		);
+	$json_data = json_encode($data);
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'https://'.$server.'api.mailchimp.com/3.0/lists/'.$listid.'/members/' . $userid);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',
+		'Authorization: Basic '. $auth));
+	curl_setopt($ch, CURLOPT_USERAGENT, 'PHP-MCAPI/2.0');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+
+	$result = curl_exec($ch);
+
+	if ($debug) {
+		var_dump($result);
+	}
+
+	$json = json_decode($result);
+
+	echo $json->{'status'};
+
+	die();
 }
 
 ?>
