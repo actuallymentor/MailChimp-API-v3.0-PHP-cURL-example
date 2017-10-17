@@ -58,7 +58,7 @@ switch($action) {
 	}
 	break;
 	default:
-	echo "*JRobot voice* : Your action is not valid master.<br><br>";
+	echo "*Robot voice* : Your action is not valid master.<br><br>";
 	break;
 }
 
@@ -89,11 +89,11 @@ function mc_subscribe($email, $fname, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed subscribe');
+		die('<br><br>*Creepy ethereal voice* : Mailchimp executed subscribe');
 	}
 
 	die();
-};
+}
 
 function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 	$userid = md5($email);
