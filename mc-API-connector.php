@@ -89,7 +89,7 @@ function mc_subscribe($email, $fname, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed subscribe');
+		die('<br><br>*Creepy ethereal voice* : Mailchimp executed subscribe');
 	}
 
 	die();
@@ -122,7 +122,7 @@ function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+		die('<br><br>*Creepy ethereal voice* : Mailchimp executed interest add.');
 	}
 
 	die();
@@ -157,7 +157,7 @@ function mc_addinterest($email, $interest, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+		die('<br><br>*Creepy ethereal voice* : Mailchimp executed interest add.');
 	}
 
 	die();
@@ -192,7 +192,7 @@ function mc_reminterest($email, $interest, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest removal');
+		die('<br><br>*Creepy ethereal voice* : Mailchimp executed interest removal');
 	}
 
 	die();
