@@ -96,7 +96,7 @@ function mc_subscribe($email, $fname, $debug, $apikey, $listid, $server) {
 }
 
 function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
-	$userid = md5($email);
+	$userid = md5( strtolower( $email ) );
 	$auth = base64_encode( 'user:'. $apikey );
 	$data = array(
 		'apikey'        => $apikey,
@@ -130,7 +130,7 @@ function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 
 
 function mc_addinterest($email, $interest, $debug, $apikey, $listid, $server) {
-	$userid = md5($email);
+	$userid = md5( strtolower( $email ) );
 	$auth = base64_encode( 'user:'. $apikey );
 	$data = array(
 		'apikey'        => $apikey,
@@ -164,7 +164,7 @@ function mc_addinterest($email, $interest, $debug, $apikey, $listid, $server) {
 }
 
 function mc_reminterest($email, $interest, $debug, $apikey, $listid, $server) {
-	$userid = md5($email);
+	$userid = md5( strtolower( $email ) );
 	$auth = base64_encode( 'user:'. $apikey );
 
 	$data = array(
@@ -199,7 +199,7 @@ function mc_reminterest($email, $interest, $debug, $apikey, $listid, $server) {
 }
 
 function mc_checklist($email, $debug, $apikey, $listid, $server) {
-	$userid = md5($email);
+	$userid = md5( strtolower( $email ) );
 	$auth = base64_encode( 'user:'. $apikey );
 
 	$data = array(
