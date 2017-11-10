@@ -10,55 +10,55 @@ $listid = $_POST["listid"];
 $server = YOURSERVER WITH A . AFTER IT;
 
 if ($debug) {
-	echo "*Robot voice* : Bleep bleep. Debugging is on master. <br><br>";
+	echo "*Robot voice* : Bleep bleep. Debugging is on master.<br /><br />";
 }
 
 if (!isset($email)) {
-	echo "*Robot voice*: No email master, I don't know what to do now. <br><br>";
+	echo "*Robot voice*: No email master, I don't know what to do now.<br /><br />";
 }
 
 switch($action) {
 	case "subscribe":
 	if ($debug) {
-		echo "*Robot voice* : Starting subscribe <br><br>";
+		echo "*Robot voice* : Starting subscribe <br /><br />";
 	}
 	mc_subscribe($email, $fname, $debug, $apikey, $listid, $server);
 	if ($debug) {
-		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+		echo "*Robot voice* : Function didn't complete for some reason.<br /><br />";
 	}
 	break;
 	case "addinterest":
 	if ($debug) {
-		echo "*Robot voice* : Starting interest add <br><br>";
+		echo "*Robot voice* : Starting interest add <br /><br />";
 	}
 	mc_addinterest($email, $interest, $debug, $apikey, $listid, $server);
 	if ($debug) {
-		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+		echo "*Robot voice* : Function didn't complete for some reason.<br /><br />";
 	}
 	break;
 	case "reminterest":
 	if ($debug) {
-		echo "*Robot voice* : Starting interest removal <br><br>";
+		echo "*Robot voice* : Starting interest removal <br /><br />";
 	}
 	mc_reminterest($email, $interest, $debug, $apikey, $listid, $server);
 	if ($debug) {
-		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+		echo "*Robot voice* : Function didn't complete for some reason.<br /><br />";
 	}
 	break;
 	case "changename":
 	mc_changename($fname, $email, $debug, $apikey, $listid, $server);
 	if ($debug) {
-		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+		echo "*Robot voice* : Function didn't complete for some reason.<br /><br />";
 	}
 	break;
 	case "checklist":
 	mc_checklist($email, $debug, $apikey, $listid, $server);
 	if ($debug) {
-		echo "*Robot voice* : Function didn't complete for some reason.<br><br>";
+		echo "*Robot voice* : Function didn't complete for some reason.<br /><br />";
 	}
 	break;
 	default:
-	echo "*JRobot voice* : Your action is not valid master.<br><br>";
+	echo "*Robot voice* : Your action is not valid master.<br /><br />";
 	break;
 }
 
@@ -89,11 +89,11 @@ function mc_subscribe($email, $fname, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed subscribe');
+		die('<br /><br />*Creepy ethereal voice* : Mailchimp executed subscribe');
 	}
 
 	die();
-};
+}
 
 function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 	$userid = md5($email);
@@ -122,7 +122,7 @@ function mc_changename($fname, $email, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+		die('<br /><br />*Creepy ethereal voice* : Mailchimp executed interest add.');
 	}
 
 	die();
@@ -157,7 +157,7 @@ function mc_addinterest($email, $interest, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest add.');
+		die('<br /><br />*Creepy ethereal voice* : Mailchimp executed interest add.');
 	}
 
 	die();
@@ -192,7 +192,7 @@ function mc_reminterest($email, $interest, $debug, $apikey, $listid, $server) {
 
 	if ($debug) {
 		var_dump($result);
-		die('<br><br>*Creepy etheral voice* : Mailchimp executed interest removal');
+		die('<br /><br />*Creepy ethereal voice* : Mailchimp executed interest removal');
 	}
 
 	die();
